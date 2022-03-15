@@ -80,7 +80,7 @@ void loop() {
   
   // Send RPM Request
   sendPid(PID_ENGINE_RPM);
-  delay(100); //Wait a bit
+  delay(500); //Wait a bit
   getDataBuf(buf); //Get data
 
   if(buf[0] != 0x0) {
@@ -92,7 +92,7 @@ void loop() {
   
   // Send Car speed request
   sendPid(PID_CAR_SPEED);
-  delay(100); //Wait a bit
+  delay(500); //Wait a bit
   getDataBuf(buf); //Get Data
 
   if(buf[0] != 0x0) {
@@ -104,7 +104,7 @@ void loop() {
 
   // Send throttle position request
   sendPid(PID_THROTTLE_POS);
-  delay(100); //Wait a bit
+  delay(500); //Wait a bit
   getDataBuf(buf); //Get data
 
   if(buf[0] != 0x0) {
@@ -113,6 +113,8 @@ void loop() {
 
   SERIAL_PORT_MONITOR.print("THROTTLE POS: ");
   SERIAL_PORT_MONITOR.println(__throttle);
+
+  SERIAL_PORT_MONITOR.println(String(__rpm)+","+String(__speed)+","+String(__throttle));
 }
 
 bool extractRPM(unsigned char *buf, int *rpm) {
